@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.6.5.js"></script>
+</head>
+<body>
+    <div class='table'>
+            <div class='tr'>
+                <div class='td'><img src="/static/images/1.png" id="scenery"  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code1" value="(❤ω❤)">
+                <div class='td'><img src="/static/images/2.png" alt2=""  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code2" value="(❤ω❤)">
+                <div class='td'><img src="/static/images/3.png" alt3=""  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code3" value="(❤ω❤)">
+                <div class='td'><img src="/static/images/4.png" alt="scenery"  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code4" value="(❤ω❤)">
+            </div>
+    </div>
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            // var kind = $(this).find("img").attr("id")
+            kind = alert($("img").attr("id"));
+            console.log("输出结果：" + kind)
+        })
+    })
+</script>
+
+</body>
+</html>
