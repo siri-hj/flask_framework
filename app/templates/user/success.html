@@ -19,11 +19,28 @@
             </div>
     </div>
 <script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            // var kind = $(this).find("img").attr("id")
-            kind = alert($("img").attr("id"));
-            console.log("输出结果：" + kind)
+    $(function (){
+        $('#get_valid_code1').click(function() {
+            let kind = $("img").attr("id");
+            if (kind){
+                $.ajax({
+                    // 请求方式
+                    type: 'GET',
+                    // 请求媒体类型
+                    contentType: 'application/json;charset=UTF-8',
+                    // 请求地址
+                    url: 'http://127.0.0.1:5000/user/impression?kind=' + kind,
+                    // 请求成功
+                    success: function (result) {
+                        alert(result.msg)
+                    },
+                    // 请求失败,包含具体错误信息
+                    error: function (e) {
+                        alert(e.status);
+                        alert(e.responseText);
+                    }
+                })
+            }
         })
     })
 </script>

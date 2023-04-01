@@ -1,5 +1,6 @@
-from flask import Blueprint, redirect, flash, render_template, request,current_app
+from flask import Blueprint, Response, make_response, redirect, jsonify, flash, render_template, request,current_app
 from .models import User
+from .cookies import cookies, get_cookies
 from app import db
 
 user = Blueprint('user', __name__)
@@ -14,6 +15,9 @@ def login():
     if user_exit:
         for i in user_exit:
             if i.password == user_password:
+                # 设置页面cookie，方便其他页面获取
+                cookies.set_cookies(i.id)
+
                 return render_template('/user/success.html')
 
         return render_template('/user/login.html')
@@ -40,7 +44,13 @@ def register():
     db.session.commit()
     return render_template('/user/success.html')
 
-@user.route('/register')
+@user.route('/impression')
 def impression():
     kind = request.args.get('kind')
     print(kind)
+    userid = get_cookies()
+    print('userid:' + str(userid))
+    try:
+        return jsonify(status='成功', msg="添加成功")
+    except Exception as e:
+        return jsonify(status='失败', msg="添加失败")
